@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {SVGProps} from "react";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <header className="py-10 bg-[#3871c1] dark:bg-[#201d1d]">
           <div className="container flex flex-col items-center gap-2 px-4 md:gap-4 md:flex-row md:px-6 lg:gap-6">
             <div className="flex items-center space-x-2 text-center">
-              <img
+              <Image
                   alt="SafePeek Logo"
                   className="rounded-full overflow-hidden aspect-square"
                   height="80"
@@ -50,7 +51,7 @@ export default function Home() {
                 Metadata Insights
               </h2>
               <p className="text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Uncover the story behind links with rich metadata. Know what's behind the URL before you click.
+                Uncover the story behind links with rich metadata. Know what&apos;s behind the URL before you click.
               </p>
             </div>
             <div className="flex items-center justify-center">
@@ -61,7 +62,7 @@ export default function Home() {
                 Safety Checks
               </h2>
               <p className="text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Let SafePeek be your guide to the web. We'll scan links for potential threats so you can browse with
+                Let SafePeek be your guide to the web. We&apos;ll scan links for potential threats so you can browse with
                 confidence.
               </p>
             </div>
