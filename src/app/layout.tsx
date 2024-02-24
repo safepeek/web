@@ -4,18 +4,17 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
+  alternates: {
+    canonical: '/'
+  },
   title: "SafePeek",
   description: "Enhance Discord with secure link previews, metadata insights, and safety checks.",
-  twitter: {
-    card: 'summary_large_image',
-    title: 'SafePeek',
-    description: 'Enhance Discord with secure link previews, metadata insights, and safety checks.',
-    // siteId: '1467726470533754880',
-    // creator: '@safepeek',
-    // creatorId: '1467726470533754880',
-    images: ['https://safepeek.org/og.png'], // Must be an absolute URL
-  },
+  openGraph: {
+    images: `${BASE_URL}/og.png`
+  }
 };
 
 export const viewport: Viewport = {
