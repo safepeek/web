@@ -1,4 +1,10 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description: 'View the Terms of Service for SafePeek.'
+};
 
 export default function TermsOfService() {
   return (

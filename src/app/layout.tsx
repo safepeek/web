@@ -1,20 +1,23 @@
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 import Fathom from '@/components/fathom';
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   alternates: {
     canonical: '/'
   },
-  title: "SafePeek",
-  description: "Enhance Discord with secure link previews, metadata insights, and safety checks.",
+  title: {
+    template: '%s | SafePeek',
+    default: 'SafePeek'
+  },
+  description: 'Enhance Discord with secure link previews, metadata insights, and safety checks.',
   openGraph: {
     images: `${BASE_URL}/og.png`
   }
@@ -22,10 +25,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: '#3871C1'
-}
+};
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -42,11 +45,11 @@ export default function RootLayout({
             <div className="container flex flex-col items-center gap-2 px-4 md:gap-4 md:flex-row md:px-6 lg:gap-6">
               <div className="flex items-center space-x-2 text-center">
                 <Image
-                    alt="SafePeek Logo"
-                    className="rounded-full overflow-hidden aspect-square"
-                    height="80"
-                    src="/safepeek.svg"
-                    width="80"
+                  alt="SafePeek Logo"
+                  className="rounded-full overflow-hidden aspect-square"
+                  height="80"
+                  src="/safepeek.svg"
+                  width="80"
                 />
                 <Link href="/">
                   <h1 className="text-2xl font-bold tracking-tighter sm:text-4xl text-white">SafePeek</h1>

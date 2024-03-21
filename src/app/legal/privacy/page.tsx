@@ -1,4 +1,10 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'View the Privacy Policy for SafePeek.'
+};
 
 export default function PrivacyPolicy() {
   return (
