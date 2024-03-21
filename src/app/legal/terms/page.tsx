@@ -4,7 +4,7 @@ export default function TermsOfService() {
   return (
     <>
       <main className="flex-1 container px-4 py-12 md:py-16 lg:px-8">
-        <h1 className="text-4xl font-bold mb-4">SafePeek Terms of Service</h1>
+        <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
         <h2 className="text-xl font-semibold mb-2">Effective Date: March 21, 2024</h2>
         <p className="mb-4">
           Welcome to SafePeek. These Terms of Service (&quot;Terms&quot;) govern your use of the SafePeek Bot
