@@ -70,7 +70,7 @@ export default function RootLayout({
                   Cookies
                 </Link>
               </nav>
-              <div className="text-sm text-gray-500">© 2024 SafePeek. All rights reserved.</div>
+              <div className="text-sm text-gray-500">© 2024 Anthony Collier. All rights reserved.</div>
             </div>
           </footer>
         </div>
