@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#3871C1'
+  themeColor: '#74B9FF'
 };
 
 export default function RootLayout({
@@ -41,20 +41,14 @@ export default function RootLayout({
          * @see https://v0.dev/t/c7klMEF3AqV
          */}
         <div className="flex flex-col min-h-screen">
-          <header className="py-10 bg-[#3871c1] dark:bg-[#201d1d]">
+          <header className="py-10 bg-primary dark:bg-[#201d1d]">
             <div className="container flex flex-col items-center gap-2 px-4 md:gap-4 md:flex-row md:px-6 lg:gap-6">
-              <div className="flex items-center space-x-2 text-center">
-                <Image
-                  alt="SafePeek Logo"
-                  className="rounded-full overflow-hidden aspect-square"
-                  height="80"
-                  src="/safepeek.svg"
-                  width="80"
-                />
-                <Link href="/">
+              <Link href="/">
+                <div className="flex items-center space-x-2 text-center">
+                  <Image alt="SafePeek Logo" className="overflow-hidden" height="80" src="/safepeek.svg" width="80" />
                   <h1 className="text-2xl font-bold tracking-tighter sm:text-4xl text-white">SafePeek</h1>
-                </Link>
-              </div>
+                </div>
+              </Link>
               <div className="mx-auto max-w-3xl text-center md:ml-auto md:text-left lg:px-4">
                 <p className="text-sm text-gray-50 md:text-base dark:text-gray-400">
                   Enhance Discord with secure link previews, metadata insights, and safety checks.

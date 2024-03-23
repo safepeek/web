@@ -59,7 +59,7 @@ export default function Home() {
             </div>
             <form className="flex flex-col gap-4 md:gap-6 min-[300px]:flex-row">
               <Input className="max-w-xs w-full md:max-w-sm" placeholder="Enter your email" type="email" disabled />
-              <Button className="w-full md:w-auto bg-[#3871c1] text-white hover:bg-blue-700" type="submit" disabled>
+              <Button className="w-full md:w-auto bg-primary text-white hover:bg-blue-700" type="submit" disabled>
                 Sign up
               </Button>
             </form>
