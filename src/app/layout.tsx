@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import Fathom from '@/components/fathom';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Inter } from 'next/font/google';
+import Fathom from '@/components/fathom';
+import { SocialIcons, SocialIconsFooter } from '@/components/SocialIcons';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -54,6 +55,7 @@ export default function RootLayout({
                   Enhance Discord with secure link previews, metadata insights, and safety checks.
                 </p>
               </div>
+              <SocialIcons />
             </div>
           </header>
           {children}
@@ -70,6 +72,7 @@ export default function RootLayout({
                   Cookies
                 </Link>
               </nav>
+              <SocialIconsFooter />
               <div className="text-sm text-gray-500">© 2024 Anthony Collier. All rights reserved.</div>
             </div>
           </footer>
