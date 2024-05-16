@@ -2,10 +2,8 @@ import { fetchUrlData, validateUrl } from '@/lib/fetch';
 
 type AnalyzedUrlPostData = {
   url: string;
-  validate?: boolean;
 };
 
-// Define your API key
 const API_KEY = process.env.API_KEY;
 
 export async function POST(request: Request) {
@@ -17,7 +15,6 @@ export async function POST(request: Request) {
     });
   }
 
-  // Check if the Content-Type is application/json
   if (request.headers.get('Content-Type') !== 'application/json') {
     return new Response(JSON.stringify({ code: 'UNSUPPORTED_CONTENT_TYPE' }), {
       status: 415,
