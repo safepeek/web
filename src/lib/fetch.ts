@@ -1,5 +1,5 @@
 import { load } from 'cheerio';
-import { type AnalysisData, AnalyzedUrlRedirect } from '@/types/url';
+import { type AnalysisData, UrlRedirectData } from '@/types/url';
 
 type FetcherOpts = {
   follow?: boolean;
@@ -51,7 +51,7 @@ const fetchWithRedirects = async (url: string) => {
   let currentUrl = url;
   let response: Response;
   let metadata: MetadataResponse;
-  const urls: AnalyzedUrlRedirect[] = [];
+  const urls: UrlRedirectData[] = [];
   let redirectCount = 0;
 
   try {

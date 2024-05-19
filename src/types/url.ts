@@ -3,22 +3,22 @@ export type AnalysisData = {
   description: string;
   sourceUrl: string;
   destinationUrl: string;
-  redirects: AnalyzedUrlRedirect[];
+  redirects: UrlRedirectData[];
 };
 
-export interface AnalyzedUrl {
+export interface UrlAnalysisInputData {
   guildId: bigint | null;
   userId: bigint;
   channelId: bigint;
-  redirects: AnalyzedUrlRedirect[];
+  urls: UrlRedirectData[];
 }
 
-export interface AnalyzedUrlRedirect {
+export interface UrlRedirectData {
   rawUrl: string;
-  meta: AnalyzedUrlRedirectMetadata;
+  meta?: AnalyzedUrlRedirectMetadata;
 }
 
 export interface AnalyzedUrlRedirectMetadata {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 }
