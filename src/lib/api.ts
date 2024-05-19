@@ -1,5 +1,3 @@
-import './envConfig.ts';
-
 const API_KEY = process.env.API_KEY;
 
 export const isAPIKeyValid = (request: Request): boolean => {
