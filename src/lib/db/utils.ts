@@ -174,48 +174,27 @@ export async function createFromAnalyzedUrlData(props: CreateAnalyzedUrlDataProp
   });
 }
 
-export type ProfileData = {
-  discordUserId: bigint | string;
+export type UserProfile = {
+  discordUserId: bigint;
+};
+
+export type UpdateProfileDataProps = {
+  profile: UserProfile;
   data: {
-    ephemeral: boolean;
+    ephemeral?: boolean;
   };
 };
 
-type UpdateProfileDataProps = {
-  data: ProfileData;
-};
-
 export async function updateProfileData(props: UpdateProfileDataProps) {
-  return db
-    .update(users)
-    .set(props.data.data)
-    .where(eq(users.discordId, props.data.discordUserId as bigint))
-    .returning();
+  return db.update(users).set(props.data).where(eq(users.discordId, props.profile.discordUserId)).returning();
 }
 
 type GetUserProfileProps = {
-  discordUserId: ProfileData['discordUserId'];
+  discordUserId: bigint;
 };
 
 export async function getUserProfile(props: GetUserProfileProps) {
   return db.transaction((tx) => {
-    return upsertUser(BigInt(props.discordUserId), tx);
+    return upsertUser(props.discordUserId, tx);
   });
-}
-
-type UpdateUserProfileProps = GetUserProfileProps & {
-  data: ProfileData;
-};
-
-type UpdateUserProfileResponse = {
-  data: ProfileData;
-  id: string;
-};
-
-export async function updateUserProfile(props: UpdateUserProfileProps): Promise<UpdateUserProfileResponse> {
-  const [data] = await updateProfileData({
-    data: props.data
-  });
-
-  return { data: props.data, id: data.id };
 }
