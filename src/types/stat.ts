@@ -1,4 +1,4 @@
-import { ApplicationCommandType, ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
+import { CommandStatEntry } from '@safepeek/utils';
 import { z } from 'zod';
 
 export const statCommandSchema = z.object({
@@ -7,37 +7,17 @@ export const statCommandSchema = z.object({
   type: z.number(),
   options: z.record(z.any()),
   context: z.number(),
-  integrationTypes: z.array(z.number()),
+  integration_types: z.array(z.number()),
   metadata: z.object({
-    userId: z.string(),
-    channelId: z.string(),
-    guildId: z.string().nullish(),
+    user_id: z.string(),
+    channel_id: z.string(),
+    guild_id: z.string().nullish(),
     locale: z.string().nullish(),
-    guildLocale: z.string().nullish(),
-    interactionId: z.string(),
-    invokedAt: z.number()
+    guild_locale: z.string().nullish(),
+    interaction_id: z.string(),
+    invoked_at: z.number()
   })
 });
-
-export interface CommandStatEntry {
-  name: string;
-  id: string;
-  type: ApplicationCommandType;
-  options: { [p: string]: any };
-  context: InteractionContextType | null;
-  integrationTypes: ApplicationIntegrationType[];
-  metadata: CommandStatEntryMetadata;
-}
-
-interface CommandStatEntryMetadata {
-  userId: string;
-  channelId: string;
-  guildId: string | null;
-  locale: string | null;
-  guildLocale: string | null;
-  interactionId: string;
-  invokedAt: number;
-}
 
 export type CommandStatEntrySchema = z.infer<typeof statCommandSchema>;
 export type AssertCommandStatSchemaCompatibility = CommandStatEntrySchema extends CommandStatEntry ? true : never;
