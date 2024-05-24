@@ -15,8 +15,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.3.2)(react@18.3.1)
       '@safepeek/utils':
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.1.0
+        version: 1.1.0
       '@upstash/redis':
         specifier: ^1.31.1
         version: 1.31.1
@@ -552,8 +552,8 @@ packages:
   '@rushstack/eslint-patch@1.7.2':
     resolution: {integrity: sha512-RbhOOTCNoCrbfkRyoXODZp75MlpiHMgbE5MEBZAnnnLyQNgrigEj4p0lzsMDyc1zVsJDLrivB58tgg3emX0eEA==}
 
-  '@safepeek/utils@1.0.1':
-    resolution: {integrity: sha512-XcPtPWnVMXS6mE3HM4nvVNTDtEdTwmfrd+IB0sS6VOGuC/xYJraV81cuON8GBzzOSHNpd3qpXhbscCIQ11cJog==}
+  '@safepeek/utils@1.1.0':
+    resolution: {integrity: sha512-37pDuVXDOzuVvjJFF8O9DM8niwOZJGrNrD1bkkwS11cA+iYYR/2MBgxh8w8GG6VSFhYglQz5iwbASTA0oGCpew==}
 
   '@swc/helpers@0.5.2':
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
@@ -2542,7 +2542,7 @@ snapshots:
 
   '@rushstack/eslint-patch@1.7.2': {}
 
-  '@safepeek/utils@1.0.1':
+  '@safepeek/utils@1.1.0':
     dependencies:
       discord-api-types: 0.37.84
       slash-create: 6.1.3
