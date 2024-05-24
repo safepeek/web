@@ -15,7 +15,10 @@ export const statCommandSchema = z.object({
     locale: z.string().nullish(),
     guild_locale: z.string().nullish(),
     interaction_id: z.string(),
-    invoked_at: z.number()
+    invoked_at: z.number(),
+    bot_version: z.string(),
+    last_commit: z.string(),
+    environment: z.string()
   })
 });
 
