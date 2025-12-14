@@ -5,7 +5,7 @@ export const statCommandSchema = z.object({
   name: z.string(),
   id: z.string(),
   type: z.number(),
-  options: z.record(z.any()),
+  options: z.record(z.any(), z.unknown()),
   context: z.number(),
   integration_types: z.array(z.number()),
   metadata: z.object({

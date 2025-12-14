@@ -17,7 +17,7 @@ const postSchema = z.object({
     .optional()
 });
 
-async function GET(request: Request, { params }: { params: { id: string } }) {
+async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!isAPIKeyValid(request)) {
     return new Response(JSON.stringify({ code: 'UNAUTHORIZED_REQUEST' }), {
       status: 401,
@@ -25,7 +25,7 @@ async function GET(request: Request, { params }: { params: { id: string } }) {
     });
   }
 
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const data = await getUserProfile({
@@ -42,7 +42,7 @@ async function GET(request: Request, { params }: { params: { id: string } }) {
   }
 }
 
-async function POST(request: Request, { params }: { params: { id: string } }) {
+async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!isAPIKeyValid(request)) {
     return new Response(JSON.stringify({ code: 'UNAUTHORIZED_REQUEST' }), {
       status: 401,
@@ -57,16 +57,16 @@ async function POST(request: Request, { params }: { params: { id: string } }) {
     });
   }
 
-  const { id } = params;
+  const { id } = await params;
 
   const response = postSchema.safeParse(await request.json());
 
   if (!response.success) {
-    const { errors } = response.error;
+    const { issues } = response.error;
 
     return new Response(
       JSON.stringify({
-        error: { message: 'Invalid request', errors }
+        error: { message: 'Invalid request', errors: issues }
       }),
       {
         status: 400,

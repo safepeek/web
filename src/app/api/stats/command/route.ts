@@ -20,11 +20,11 @@ export async function POST(request: Request) {
   const response = statCommandSchema.safeParse(await request.json());
 
   if (!response.success) {
-    const { errors } = response.error;
+    const { issues } = response.error;
 
     return new Response(
       JSON.stringify({
-        error: { message: 'Invalid request', errors }
+        error: { message: 'Invalid request', errors: issues }
       }),
       {
         status: 400,

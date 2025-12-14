@@ -6,4 +6,4 @@ export const db = drizzle(sql, {
   schema
 });
 
-export type DrizzleClient = typeof db;
+export type DrizzleClient = typeof db | Parameters<Parameters<typeof db.transaction>[0]>[0];
