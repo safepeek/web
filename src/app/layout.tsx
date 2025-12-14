@@ -73,7 +73,7 @@ export default function RootLayout({
                 </Link>
               </nav>
               <SocialIconsFooter />
-              <div className="text-sm text-gray-500">© 2024 Anthony Collier. All rights reserved.</div>
+              <div className="text-sm text-gray-500">© 2025 Anthony Collier. All rights reserved.</div>
             </div>
           </footer>
         </div>
