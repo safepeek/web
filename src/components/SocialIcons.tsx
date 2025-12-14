@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import DiscordIcon from '@/components/icons/DiscordIcon';
-import TwitterXIcon from '@/components/icons/TwitterXIcon';
-import GitHubIcon from '@/components/icons/GitHubIcon';
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import DiscordIcon from "@/components/icons/DiscordIcon"
+import TwitterXIcon from "@/components/icons/TwitterXIcon"
+import GitHubIcon from "@/components/icons/GitHubIcon"
 
 export const SocialIcons = () => {
   return (
@@ -41,8 +41,10 @@ export const SocialIcons = () => {
         </Link>
       </Button>
     </div>
-  );
-};
+  )
+}
+
+export const SocialIconsHeader = SocialIcons
 
 export const SocialIconsFooter = () => {
   return (
@@ -66,5 +68,5 @@ export const SocialIconsFooter = () => {
         </Link>
       </Button>
     </div>
-  );
-};
+  )
+}
