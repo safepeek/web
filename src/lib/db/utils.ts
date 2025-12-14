@@ -1,4 +1,3 @@
-// credits to "George" (t3ned) on Discord for the contribution to most of the functions below
 import { and, eq, isNull } from 'drizzle-orm';
 import { createHash } from 'crypto';
 import { UrlAnalysisInputData } from '@/types/url';

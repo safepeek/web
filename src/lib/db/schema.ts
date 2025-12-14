@@ -1,4 +1,3 @@
-// credits to "George" (t3ned) on Discord for the contribution to the schema below
 import { pgTable, text, varchar, uniqueIndex, bigint, char, index, foreignKey, timestamp } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { ulid } from 'ulid';
