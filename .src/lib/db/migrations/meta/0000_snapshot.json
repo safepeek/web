@@ -1,7 +1,5 @@
 {
-  "id": "fc446c9d-8f18-4faa-b615-8a6ca8796f35",
-  "prevId": "00000000-0000-0000-0000-000000000000",
-  "version": "6",
+  "version": "7",
   "dialect": "postgresql",
   "tables": {
     "public.analyzed_url_results": {
@@ -48,50 +46,69 @@
       },
       "indexes": {
         "analyzed_url_results_analyzed_url_revision_id_index": {
-          "name": "analyzed_url_results_analyzed_url_revision_id_index",
           "columns": [
-            "analyzed_url_revision_id"
+            {
+              "expression": "analyzed_url_revision_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "analyzed_url_results_analyzed_url_revision_id_index",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         },
         "analyzed_url_results_redirect_analyzed_url_id_index": {
-          "name": "analyzed_url_results_redirect_analyzed_url_id_index",
           "columns": [
-            "redirect_analyzed_url_id"
+            {
+              "expression": "redirect_analyzed_url_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "analyzed_url_results_redirect_analyzed_url_id_index",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {
         "analyzed_url_results_analyzed_url_revision_id_analyzed_url_revisions_id_fk": {
           "name": "analyzed_url_results_analyzed_url_revision_id_analyzed_url_revisions_id_fk",
           "tableFrom": "analyzed_url_results",
-          "tableTo": "analyzed_url_revisions",
           "columnsFrom": [
             "analyzed_url_revision_id"
           ],
+          "tableTo": "analyzed_url_revisions",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "restrict"
+          "onUpdate": "restrict",
+          "onDelete": "cascade"
         },
         "analyzed_url_results_redirect_analyzed_url_id_analyzed_urls_id_fk": {
           "name": "analyzed_url_results_redirect_analyzed_url_id_analyzed_urls_id_fk",
           "tableFrom": "analyzed_url_results",
-          "tableTo": "analyzed_urls",
           "columnsFrom": [
             "redirect_analyzed_url_id"
           ],
+          "tableTo": "analyzed_urls",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "restrict"
+          "onUpdate": "restrict",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false,
+      "checkConstraints": {}
     },
     "public.analyzed_url_revisions": {
       "name": "analyzed_url_revisions",
@@ -137,70 +154,97 @@
       },
       "indexes": {
         "analyzed_url_revisions_analyzed_url_id_index": {
-          "name": "analyzed_url_revisions_analyzed_url_id_index",
           "columns": [
-            "analyzed_url_id"
+            {
+              "expression": "analyzed_url_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "analyzed_url_revisions_analyzed_url_id_index",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         },
         "analyzed_url_revisions_user_id_index": {
-          "name": "analyzed_url_revisions_user_id_index",
           "columns": [
-            "user_id"
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "analyzed_url_revisions_user_id_index",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         },
         "analyzed_url_revisions_guild_id_index": {
-          "name": "analyzed_url_revisions_guild_id_index",
           "columns": [
-            "guild_id"
+            {
+              "expression": "guild_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "analyzed_url_revisions_guild_id_index",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {
         "analyzed_url_revisions_analyzed_url_id_analyzed_urls_id_fk": {
           "name": "analyzed_url_revisions_analyzed_url_id_analyzed_urls_id_fk",
           "tableFrom": "analyzed_url_revisions",
-          "tableTo": "analyzed_urls",
           "columnsFrom": [
             "analyzed_url_id"
           ],
+          "tableTo": "analyzed_urls",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "restrict"
+          "onUpdate": "restrict",
+          "onDelete": "cascade"
         },
         "analyzed_url_revisions_user_id_users_id_fk": {
           "name": "analyzed_url_revisions_user_id_users_id_fk",
           "tableFrom": "analyzed_url_revisions",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "restrict"
+          "onUpdate": "restrict",
+          "onDelete": "cascade"
         },
         "analyzed_url_revisions_guild_id_guilds_id_fk": {
           "name": "analyzed_url_revisions_guild_id_guilds_id_fk",
           "tableFrom": "analyzed_url_revisions",
-          "tableTo": "guilds",
           "columnsFrom": [
             "guild_id"
           ],
+          "tableTo": "guilds",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "restrict"
+          "onUpdate": "restrict",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false,
+      "checkConstraints": {}
     },
     "public.analyzed_urls": {
       "name": "analyzed_urls",
@@ -233,25 +277,54 @@
       },
       "indexes": {
         "analyzed_urls_domain_hash_index": {
-          "name": "analyzed_urls_domain_hash_index",
           "columns": [
-            "domain_hash"
+            {
+              "expression": "domain_hash",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": false
+          "with": {},
+          "name": "analyzed_urls_domain_hash_index",
+          "isUnique": false,
+          "method": "btree",
+          "concurrently": false
         },
         "analyzed_urls_domain_hash_path_hash_params_hash_index": {
-          "name": "analyzed_urls_domain_hash_path_hash_params_hash_index",
           "columns": [
-            "domain_hash",
-            "path_hash",
-            "params_hash"
+            {
+              "expression": "domain_hash",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "path_hash",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "params_hash",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "with": {},
+          "name": "analyzed_urls_domain_hash_path_hash_params_hash_index",
+          "isUnique": true,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false,
+      "checkConstraints": {}
     },
     "public.guilds": {
       "name": "guilds",
@@ -272,16 +345,27 @@
       },
       "indexes": {
         "guilds_discord_id_index": {
-          "name": "guilds_discord_id_index",
           "columns": [
-            "discord_id"
+            {
+              "expression": "discord_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "with": {},
+          "name": "guilds_discord_id_index",
+          "isUnique": true,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false,
+      "checkConstraints": {}
     },
     "public.users": {
       "name": "users",
@@ -309,23 +393,40 @@
       },
       "indexes": {
         "users_discord_id_index": {
-          "name": "users_discord_id_index",
           "columns": [
-            "discord_id"
+            {
+              "expression": "discord_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
           ],
-          "isUnique": true
+          "with": {},
+          "name": "users_discord_id_index",
+          "isUnique": true,
+          "method": "btree",
+          "concurrently": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false,
+      "checkConstraints": {}
     }
   },
   "enums": {},
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "fc446c9d-8f18-4faa-b615-8a6ca8796f35",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "sequences": {},
+  "policies": {},
+  "views": {},
+  "roles": {}
 }
