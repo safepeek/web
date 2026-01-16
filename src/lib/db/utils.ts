@@ -19,7 +19,19 @@ function takeFirstOrThrow<T>(results: T[]): T {
   return result;
 }
 
-async function upsertUser(discordId: bigint, tx: DrizzleClient) {
+async function upsertUser(discordId: bigint | null, tx: DrizzleClient) {
+  if (!discordId) {
+    // Create anonymous user without Discord ID
+    return takeFirstOrThrow(
+      await tx
+        .insert(users)
+        .values({
+          discordId: null
+        })
+        .returning()
+    );
+  }
+
   const user = await tx.query.users.findFirst({
     where: eq(users.discordId, discordId)
   });
@@ -83,9 +95,10 @@ async function upsertAnalyzedUrl(rawUrl: string, tx: DrizzleClient) {
 
 async function createAnalyzedUrlRevision(
   analyzedUrlId: string,
-  userId: string,
+  userId: string | null,
   guildId: string | null,
-  discordChannelId: bigint,
+  discordChannelId: bigint | null,
+  source: 'discord' | 'web',
   tx: DrizzleClient
 ) {
   return takeFirstOrThrow(
@@ -95,7 +108,8 @@ async function createAnalyzedUrlRevision(
         analyzedUrlId,
         userId,
         guildId,
-        discordChannelId
+        discordChannelId,
+        source
       })
       .returning()
   );
@@ -155,6 +169,7 @@ export async function createFromAnalyzedUrlData(props: CreateAnalyzedUrlDataProp
         user.id,
         guild.id,
         props.analyzedUrlData.channelId,
+        props.analyzedUrlData.source,
         tx
       );
       await createAnalyzedUrlResult({

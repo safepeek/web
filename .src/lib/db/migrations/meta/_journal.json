@@ -8,6 +8,13 @@
       "when": 1716081244638,
       "tag": "0000_famous_maggott",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1768528002800,
+      "tag": "0001_legal_nehzno",
+      "breakpoints": true
     }
   ]
 }

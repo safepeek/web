@@ -9,7 +9,8 @@ type AnalyzedUrlPostData =
     }
   | {
       url: string;
-      metadata: {
+      source?: 'discord' | 'web';
+      metadata?: {
         discordUserId: string;
         discordChannelId: string;
         discordGuildId?: string;
@@ -66,11 +67,14 @@ export async function POST(request: Request) {
           headers: { 'Content-Type': 'application/json' }
         }
       );
+
+    const source = res.source || (res.metadata ? 'discord' : 'web');
     const result = await createFromAnalyzedUrlData({
       analyzedUrlData: {
-        userId: BigInt(res.metadata.discordUserId),
-        channelId: BigInt(res.metadata.discordChannelId),
-        guildId: res.metadata.discordGuildId ? BigInt(res.metadata.discordGuildId) : null,
+        userId: res.metadata?.discordUserId ? BigInt(res.metadata.discordUserId) : null,
+        channelId: res.metadata?.discordChannelId ? BigInt(res.metadata.discordChannelId) : null,
+        guildId: res.metadata?.discordGuildId ? BigInt(res.metadata.discordGuildId) : null,
+        source,
         urls: [
           {
             rawUrl: data.sourceUrl

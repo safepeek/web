@@ -28,7 +28,7 @@ export const users = pgTable(
     id: char('id', { length: ULID_LENGTH })
       .$default(() => ulid())
       .primaryKey(),
-    discordId: bigint('discord_id', { mode: 'bigint' }).notNull(),
+    discordId: bigint('discord_id', { mode: 'bigint' }),
     ephemeral: boolean('ephemeral').default(true)
   },
   (columns) => ({
@@ -69,12 +69,13 @@ export const analyzedUrlRevisions = pgTable(
       .$default(() => ulid())
       .primaryKey(),
     analyzedUrlId: char('analyzed_url_id', { length: ULID_LENGTH }).notNull(),
-    userId: char('user_id', { length: ULID_LENGTH }).notNull(),
+    userId: char('user_id', { length: ULID_LENGTH }),
     // if guild_id is null, then it was ran in dm
     guildId: char('guild_id', { length: ULID_LENGTH }),
     discordChannelId: bigint('discord_channel_id', {
       mode: 'bigint'
-    }).notNull(),
+    }),
+    source: varchar('source', { length: 20 }).notNull().default('discord'),
     insertedAt: timestamp('inserted_at', { withTimezone: true }).defaultNow()
   },
   (columns) => ({
