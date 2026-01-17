@@ -2,11 +2,25 @@
 
 import type React from 'react';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Search, Link2, ArrowRight, ExternalLink, Shield, Loader2 } from 'lucide-react';
 import { analyzeUrl } from './actions';
+
+const SESSION_ID_KEY = 'safepeek_session_id';
+
+function getOrCreateSessionId(): string {
+  console.log('running getOrCreateSessionId');
+  if (typeof window === 'undefined') return '';
+
+  let sessionId = localStorage.getItem(SESSION_ID_KEY);
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem(SESSION_ID_KEY, sessionId);
+  }
+  return sessionId;
+}
 
 type AnalysisResult = {
   title: string;
@@ -22,6 +36,11 @@ export default function SearchClient() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [sessionId, setSessionId] = useState<string>('');
+
+  useEffect(() => {
+    setSessionId(getOrCreateSessionId());
+  }, []);
 
   const handleAnalyze = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +55,7 @@ export default function SearchClient() {
     setResult(null);
 
     try {
-      const response = await analyzeUrl(url.trim());
+      const response = await analyzeUrl(url.trim(), sessionId);
 
       if (!response.success) {
         setError(response.error || 'Failed to analyze URL');

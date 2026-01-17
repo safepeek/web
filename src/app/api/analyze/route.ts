@@ -10,6 +10,7 @@ type AnalyzedUrlPostData =
   | {
       url: string;
       source?: 'discord' | 'web';
+      sessionId?: string;
       metadata?: {
         discordUserId: string;
         discordChannelId: string;
@@ -72,6 +73,7 @@ export async function POST(request: Request) {
     const result = await createFromAnalyzedUrlData({
       analyzedUrlData: {
         userId: res.metadata?.discordUserId ? BigInt(res.metadata.discordUserId) : null,
+        sessionId: res.sessionId ?? null,
         channelId: res.metadata?.discordChannelId ? BigInt(res.metadata.discordChannelId) : null,
         guildId: res.metadata?.discordGuildId ? BigInt(res.metadata.discordGuildId) : null,
         source,

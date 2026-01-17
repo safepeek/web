@@ -29,10 +29,12 @@ export const users = pgTable(
       .$default(() => ulid())
       .primaryKey(),
     discordId: bigint('discord_id', { mode: 'bigint' }),
+    sessionId: varchar('session_id', { length: 36 }),
     ephemeral: boolean('ephemeral').default(true)
   },
   (columns) => ({
-    discordIdUnqIdx: uniqueIndex().on(columns.discordId)
+    discordIdUnqIdx: uniqueIndex().on(columns.discordId),
+    sessionIdUnqIdx: uniqueIndex().on(columns.sessionId)
   })
 );
 
