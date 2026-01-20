@@ -19,30 +19,57 @@ function takeFirstOrThrow<T>(results: T[]): T {
   return result;
 }
 
-async function upsertUser(discordId: bigint | null, tx: DrizzleClient) {
-  if (!discordId) {
-    // Create anonymous user without Discord ID
+type UpsertUserOptions = {
+  discordId?: bigint | null;
+  sessionId?: string | null;
+};
+
+async function upsertUser(options: UpsertUserOptions, tx: DrizzleClient) {
+  const { discordId, sessionId } = options;
+
+  // Discord users: upsert by discordId
+  if (discordId) {
+    const user = await tx.query.users.findFirst({
+      where: eq(users.discordId, discordId)
+    });
+
+    if (user) return user;
+
     return takeFirstOrThrow(
       await tx
         .insert(users)
         .values({
-          discordId: null
+          discordId
         })
         .returning()
     );
   }
 
-  const user = await tx.query.users.findFirst({
-    where: eq(users.discordId, discordId)
-  });
+  // Web users with session: upsert by sessionId
+  if (sessionId) {
+    const user = await tx.query.users.findFirst({
+      where: eq(users.sessionId, sessionId)
+    });
 
-  if (user) return user;
+    if (user) return user;
 
+    return takeFirstOrThrow(
+      await tx
+        .insert(users)
+        .values({
+          sessionId
+        })
+        .returning()
+    );
+  }
+
+  // Fallback: create anonymous user without any identifier
   return takeFirstOrThrow(
     await tx
       .insert(users)
       .values({
-        discordId
+        discordId: null,
+        sessionId: null
       })
       .returning()
   );
@@ -158,7 +185,13 @@ type CreateAnalyzedUrlDataProps = {
 
 export async function createFromAnalyzedUrlData(props: CreateAnalyzedUrlDataProps) {
   return db.transaction(async (tx) => {
-    const user = await upsertUser(props.analyzedUrlData.userId, tx);
+    const user = await upsertUser(
+      {
+        discordId: props.analyzedUrlData.userId,
+        sessionId: props.analyzedUrlData.sessionId
+      },
+      tx
+    );
     const guild = props.analyzedUrlData.guildId ? await upsertGuild(props.analyzedUrlData.guildId, tx) : { id: null };
 
     let previousRedirectAnalyzedUrlId: string | null = null;
@@ -209,6 +242,6 @@ type GetUserProfileProps = {
 
 export async function getUserProfile(props: GetUserProfileProps) {
   return db.transaction((tx) => {
-    return upsertUser(props.discordUserId, tx);
+    return upsertUser({ discordId: props.discordUserId }, tx);
   });
 }

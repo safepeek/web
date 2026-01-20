@@ -13,7 +13,7 @@ type AnalysisResponse =
   | { success: true; data: AnalysisResult }
   | { success: false; error: string };
 
-export async function analyzeUrl(url: string): Promise<AnalysisResponse> {
+export async function analyzeUrl(url: string, sessionId?: string): Promise<AnalysisResponse> {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/analyze`, {
       method: 'POST',
@@ -23,7 +23,8 @@ export async function analyzeUrl(url: string): Promise<AnalysisResponse> {
       },
       body: JSON.stringify({
         url,
-        source: 'web'
+        source: 'web',
+        sessionId: sessionId || undefined
       })
     });
 
