@@ -37,11 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <PlausibleProvider domain="safepeek.org" trackOutboundLinks />
-      </head>
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
+        <PlausibleProvider domain="safepeek.org" trackOutboundLinks>
+          <div className="flex flex-col min-h-screen">
           <header className="bg-gradient-to-r from-slate-900 to-slate-800 py-4">
             <div className="container mx-auto max-w-7xl px-4 md:px-6">
               <div className="flex items-center justify-between">
@@ -83,6 +81,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+        </PlausibleProvider>
       </body>
     </html>
   )
