@@ -45,9 +45,10 @@ export default function PrivacyPolicy() {
 
         <h3 className="text-md font-semibold mb-1">1.2 Analytics Data</h3>
         <p className="mb-4">
-          For our Site, we use Fathom Analytics, a privacy-centric tool, to collect aggregated data about user
+          For our Site, we use Plausible Analytics, a privacy-centric tool, to collect aggregated data about user
           interactions and usage patterns. This may include visit frequency, page views, and other relevant metrics.
-          Fathom Analytics prioritizes user privacy, ensuring individual identifiers are securely managed.
+          Plausible Analytics prioritizes user privacy, does not use cookies, and does not collect personally
+          identifiable information.
         </p>
 
         <h2 className="text-lg font-semibold mb-2">2. Use of Information</h2>

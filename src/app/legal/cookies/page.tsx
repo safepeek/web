@@ -29,9 +29,9 @@ export default function CookiePolicy() {
 
         <h2 className="text-lg font-semibold mb-2">2. Why Do We Use Cookies?</h2>
         <p className="mb-4">
-          We use first-party and third-party cookies for several reasons. We use cookies to help us understand how you
-          use our Site and to improve your experience. Specifically, we use Fathom Analytics, a privacy-first analytics
-          tool that helps us understand Site usage without compromising your privacy.
+          We use first-party cookies for several reasons, primarily to help us understand how you use our Site and to
+          improve your experience. For analytics, we use Plausible Analytics, a privacy-first analytics tool that does
+          not use cookies and does not collect personally identifiable information.
         </p>
 
         <h2 className="text-lg font-semibold mb-2">3. What Types of Cookies Do We Use?</h2>
@@ -42,11 +42,11 @@ export default function CookiePolicy() {
           of its features.
         </p>
 
-        <h3 className="text-md font-semibold mb-1">3.2 Analytics and Performance Cookies</h3>
+        <h3 className="text-md font-semibold mb-1">3.2 Analytics</h3>
         <p className="mb-4">
-          We use Fathom Analytics to collect information about how visitors use our Site. These cookies help us improve
-          how our Site works. Fathom Analytics does not track individual users or collect personally identifiable
-          information, making it a privacy-conscious choice.
+          We use Plausible Analytics to collect information about how visitors use our Site. Plausible is a
+          cookie-free, privacy-focused analytics tool that does not track individual users or collect personally
+          identifiable information, making it a privacy-conscious choice.
         </p>
 
         <h2 className="text-lg font-semibold mb-2">4. How Can You Control Cookies?</h2>

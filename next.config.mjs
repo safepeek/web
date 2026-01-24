@@ -1,3 +1,5 @@
-const nextConfig = {};
+import { withPlausibleProxy } from "next-plausible"
 
-export default nextConfig;
+const nextConfig = {}
+
+export default withPlausibleProxy()(nextConfig)

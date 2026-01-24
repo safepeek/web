@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import Link from "next/link"
 import { Inter } from "next/font/google"
-import Fathom from "@/components/fathom"
+import PlausibleProvider from "next-plausible"
 import { SocialIconsFooter } from "@/components/SocialIcons"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -37,7 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Fathom />
+      <head>
+        <PlausibleProvider domain="acollier.dev" trackOutboundLinks />
+      </head>
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
           <header className="bg-gradient-to-r from-slate-900 to-slate-800 py-4">
