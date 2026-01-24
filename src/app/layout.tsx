@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <PlausibleProvider domain="acollier.dev" trackOutboundLinks />
+        <PlausibleProvider domain="safepeek.org" trackOutboundLinks />
       </head>
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
