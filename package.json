@@ -1,6 +1,6 @@
 {
   "name": "safepeek-web",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -24,7 +24,6 @@
     "drizzle-orm": "^0.45.1",
     "lucide-react": "^0.561.0",
     "next": "16.0.10",
-    "next-plausible": "^3.12.5",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tailwind-merge": "^3.4.0",

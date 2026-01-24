@@ -1,45 +1,56 @@
-import type React from "react"
-import type { Metadata, Viewport } from "next"
-import "./globals.css"
-import Link from "next/link"
-import { Inter } from "next/font/google"
-import PlausibleProvider from "next-plausible"
-import { SocialIconsFooter } from "@/components/SocialIcons"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import type React from 'react';
+import type { Metadata, Viewport } from 'next';
+import './globals.css';
+import Link from 'next/link';
+import { Inter } from 'next/font/google';
+import { SocialIconsFooter } from '@/components/SocialIcons';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ['latin'] });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://safepeek.org"
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://safepeek.org';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   alternates: {
-    canonical: "/",
+    canonical: '/'
   },
   title: {
-    template: "%s | SafePeek",
-    default: "SafePeek - Secure Link Previews for Discord",
+    template: '%s | SafePeek',
+    default: 'SafePeek - Secure Link Previews for Discord'
   },
-  description: "Enhance Discord with secure link previews, metadata insights, and safety checks.",
+  description: 'Enhance Discord with secure link previews, metadata insights, and safety checks.',
   openGraph: {
-    images: `${BASE_URL}/og.png`,
-  },
-}
+    images: `${BASE_URL}/og.png`
+  }
+};
 
 export const viewport: Viewport = {
-  themeColor: "#5B8DEF",
-}
+  themeColor: '#5B8DEF'
+};
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
+  const endpoint = process.env.NEXT_PUBLIC_PLAUSIBLE_ENDPOINT;
+
   return (
     <html lang="en">
+      <head>
+        <script async src={`${endpoint}/js/script.js`}></script>
+        <script>
+          {`
+            window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+            plausible.init({
+              endpoint: "${endpoint}/api/event"
+            })
+          `}
+        </script>
+      </head>
       <body className={inter.className}>
-        <PlausibleProvider domain="safepeek.org" trackOutboundLinks>
-          <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen">
           <header className="bg-gradient-to-r from-slate-900 to-slate-800 py-4">
             <div className="container mx-auto max-w-7xl px-4 md:px-6">
               <div className="flex items-center justify-between">
@@ -81,8 +92,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
-        </PlausibleProvider>
       </body>
     </html>
-  )
+  );
 }
