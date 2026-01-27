@@ -33,12 +33,9 @@ export const validateUrl = async (url: string): Promise<boolean> => {
 
     clearTimeout(timeoutId);
 
-    if (!response.ok) {
-      console.error(`URL validation failed with status: ${response.status}`);
-      return false;
-    }
-
-    return response.ok;
+    // Accept any response that isn't a server error (5xx)
+    // 4xx responses (like 403) still provide valuable data (destination URL, redirects)
+    return response.status < 500;
   } catch (error: any) {
     console.error(`Error validating URL: ${url}`, error.message);
     console.error(error.stack);
