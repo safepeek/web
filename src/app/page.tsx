@@ -100,7 +100,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">Metadata Insights</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Uncover the story behind links with rich metadata. Know exactly what you're clicking with detailed
+                  Uncover the story behind links with rich metadata. Know exactly what you&apos;re clicking with detailed
                   site information.
                 </p>
               </div>
@@ -236,7 +236,7 @@ export default function Home() {
               </Button>
             </form>
             <p id="newsletter-status" className="text-sm text-muted-foreground">
-              Coming soon. We'll notify you when the newsletter is ready.
+              Coming soon. We&apos;ll notify you when the newsletter is ready.
             </p>
           </div>
         </div>
